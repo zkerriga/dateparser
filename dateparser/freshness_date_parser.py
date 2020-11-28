@@ -5,7 +5,7 @@ from tzlocal import get_localzone
 
 from dateutil.relativedelta import relativedelta
 
-from dateparser.utils import apply_timezone, localize_timezone, strip_braces
+from ..dateparser.utils import apply_timezone, localize_timezone, strip_braces
 from .parser import time_parser
 from .timezone_parser import pop_tz_offset_from_string
 
@@ -154,7 +154,7 @@ class FreshnessDateDataParser:
         return kwargs
 
     def get_date_data(self, date_string, settings=None):
-        from dateparser.date import DateData
+        from ..dateparser.date import DateData
 
         date, period = self.parse(date_string, settings)
         return DateData(date_obj=date, period=period)

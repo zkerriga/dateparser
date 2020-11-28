@@ -3,6 +3,7 @@ from importlib import import_module
 from itertools import zip_longest
 import regex as re
 from copy import deepcopy
+from ...dateparser.data.date_translation_data import ru
 
 from ..data import language_order, language_locale_dict
 from .locale import Locale
@@ -172,8 +173,9 @@ class LocaleDataLoader:
                     locale = Locale(shortname, language_info=deepcopy(self._loaded_languages[lang]))
                     self._loaded_locales[shortname] = locale
                 else:
-                    language_info = getattr(
-                        import_module('dateparser.data.date_translation_data.' + lang), 'info')
+                    language_info = ru.info
+                    # language_info = getattr(
+                        # import_module('dateparser.data.date_translation_data.' + lang), 'info')
                     locale = Locale(shortname, language_info=deepcopy(language_info))
                     self._loaded_languages[lang] = language_info
                     self._loaded_locales[shortname] = locale
